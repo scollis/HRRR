@@ -26,7 +26,7 @@ def fetch_HRRR(forecast_time = 'f000', dimensionality = '3d', outdir = '/data/HR
             outobj=open(outfile, 'wb')
             outobj.write(req.read())
             outobj.close()
-    except urllib2.HTTPError:
+    except:
         outfile = 'null'
         print('File not found, skipping')
     return outfile
