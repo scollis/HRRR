@@ -16,19 +16,22 @@ def fetch_HRRR(forecast_time = 'f000', dimensionality = '3d', outdir = '/data/HR
     print filename
     req = urllib2.urlopen(last_dir + '/' + filename)
     exising_hrrr_files = os.listdir(outdir)
-    try:
-        outfile = outdir + filename
-        if filename in exising_hrrr_files:
-            print('File exists, saving bandwidth')
-        else:
-            print('fetching')
+    outfile = outdir + filename
+    if filename in exising_hrrr_files:
+        print('File exists, saving bandwidth')
+    else:
+        print('fetching')
+        state = 'working'
+        try:    
             req = urllib2.urlopen(last_dir + '/' + filename)
+        except:
+            outfile = 'null'
+            print('File not found, skipping')
+            state = 'dead'
+        if state == 'working':
             outobj=open(outfile, 'wb')
             outobj.write(req.read())
             outobj.close()
-    except:
-        outfile = 'null'
-        print('File not found, skipping')
     return outfile
 
 if __name__ == '__main__':
