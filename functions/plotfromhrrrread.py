@@ -4,20 +4,25 @@ Created on Wed Jun  4 14:03:36 2014
 
 @author: mattjohnson
 """
-import pygrib
+
 from matplotlib import pyplot as plt
 from matplotlib import colors
 import numpy as np
 from mpl_toolkits.basemap import Basemap, addcyclic
+import pygrib
 
 def plothrrrfromfile(filename,parameter,hinp='',scaling=1,final_unit = '',vmax=None,vmin=None): #US
-#    filename = '/Users/mattjohnson/HRRR/hrrr.3d.201405291100f001.grib2'
-#    parameter = 'Cloud Ice'
-#    hinp = 800 hPa
+    """
+    Plots a given HRRR file over a given parameter and height in hPa over the US.  If the height is left blank 
+    it will plot the maximum values of the parameter over all locations.  
+    
+    The scaling, final_unit vmax and vmin parameters allow fine tuning of the plot to make differences more visible.  
+    """
+    
     if hinp != '':
-        [data,parameterlist,datah,dataloc,units] = readHrrr(filename,[parameter])
+        [data,parameterlist,datah,dataloc,units] = read_Hrrr(filename,[parameter])
     else:
-        [data,parameterlist,datah,dataloc,units] = readHrrr(filename,[parameter],max=True)
+        [data,parameterlist,datah,dataloc,units] = read_Hrrr(filename,[parameter],max=True)
     
     if hinp !='':
         datah = datah.tolist()
@@ -48,5 +53,5 @@ def plothrrrfromfile(filename,parameter,hinp='',scaling=1,final_unit = '',vmax=N
     
     plt.colorbar(label=final_unit)
     plt.show()
-    
+    return 0
     

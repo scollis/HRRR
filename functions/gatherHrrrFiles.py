@@ -8,8 +8,6 @@ Created on Thu May 29 16:55:37 2014
 def gather_hrrr_files(path, datestrings = [], hourslists = []):
     
     """
-    gatherHrrrFiles:
-
     Takes in a string path leading to a set of HRRR files, a list of datetime objects (datestrings) and a list of the same 
     size containing lists of the corresponding model hours requested (hourslists), if datestrings and hourslists are 
     omitted or both empty the output will be for all dates and model hours files available in the path, if datestrings 
