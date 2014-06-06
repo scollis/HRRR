@@ -7,6 +7,7 @@ Created on Mon Jun  2 09:23:00 2014
 
 class datafileset:
     
+    
     import datetime
     import numpy as np
     
@@ -32,7 +33,6 @@ class datafileset:
             self.dataname.append('hrrr'+str(i))
         
             "..."
-        
         
     def combine(self,files,dates):
         if self.filesets == []:

@@ -5,16 +5,14 @@ Created on Tue Jun  3 13:33:41 2014
 @author: mattjohnson
 """
 
-
-#from pygrib read example
-
-import pygrib
 from matplotlib import pyplot as plt
 from matplotlib import colors
 import numpy as np
 from mpl_toolkits.basemap import Basemap, addcyclic
+import pygrib
 
 def grb_to_grid(grb_obj):
+    #from scollis
     """Takes a single grb object containing multiple
     levels. Assumes same time, pressure levels. Compiles to a cube"""
     n_levels = len(grb_obj)
@@ -27,12 +25,20 @@ def grb_to_grid(grb_obj):
                  'levels' : levels[indexes]}
     return cube_dict
     
-#adaption
-def readHrrr(filename, parameters = [''],max = False):
-    #filename = '/Users/mattjohnson/HRRR/hrrr.3d.201405291100f001.grib2'
-      
-    myfile = pygrib.open(filename) #issues in script
-    parameterlist = ['Geopotential Height','Temperature','Relative humidity','Dew point temperature','Specific humidity','Vertical velocity','U component of wind','V component of wind','Absolute vorticity','Cloud mixing ratio','Cloud Ice','Rain mixing ratio','Snow mixing ratio','Graupel (snow pellets)']    
+def read_Hrrr(filename, parameters = [''],max = False):
+    
+    """
+    With an option for returning just the maximum values of a given list of parameters at each location, this function 
+    takes in a filename, list of parameters (all parameters if left blank) and returns the ndarray of data, the list
+    of parameters, list of heights in hPa, ndarray of locations and the list of units corresponding to each parameter
+    in a list.  
+    """
+    
+    myfile = pygrib.open(filename) 
+    parameterlist = ['Geopotential Height','Temperature','Relative humidity','Dew point temperature',
+        'Specific humidity','Vertical velocity','U component of wind','V component of wind',
+        'Absolute vorticity','Cloud mixing ratio','Cloud Ice','Rain mixing ratio','Snow mixing ratio',
+        'Graupel (snow pellets)']    
        
     if parameters != ['']:
         for i in range(len(parameters)):
@@ -62,15 +68,6 @@ def readHrrr(filename, parameters = [''],max = False):
     
     return [data,parameterlist,datah,dataloc,units]
     
-#grb = myfile.select(name='Cloud mixing ratio')
-#grb_cube=grb_to_grid(grb)
-#grb_ice = myfile.select(name='Cloud Ice')
-#grb_cube_ice=grb_to_grid(grb_ice)
-#
-#f = plt.figure(figsize=[12,10])
-#m = Basemap(llcrnrlon = -130,llcrnrlat = 20, urcrnrlon = -70,
-#           urcrnrlat = 52 , projection = 'mill', area_thresh =10000 ,
-#           resolution='l')
-#x, y = m(lons, lats)
+
     
     

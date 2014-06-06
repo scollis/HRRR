@@ -13,14 +13,14 @@ from mpl_toolkits.basemap import Basemap, addcyclic
 
 def plot_sgp_hrrr(filename,parameter,hinp = '', scaling = 1, final_unit = '', margin = 10, vmax = None, vmin = None):
 
-"""
-Plots an hrrr file focused on the SGP site for a given hrrr filename, parameter and height in hPa. 
-Labels the SGP site.  
- 
-Leaving the height blank will cause it to plot the maximum values of the file.  The margin defines half the length of the 
-plot area in degrees latitude and longitude.  Scaling and final_unit can be used to tweak the data in order to make it 
-more visible on the graph.  vmax and vmin function the same as in pcolormesh from Basemap.  
-"""
+    """
+    Plots an hrrr file focused on the SGP site for a given hrrr filename, parameter and height in hPa. 
+    Labels the SGP site.  
+     
+    Leaving the height blank will cause it to plot the maximum values of the file.  The margin defines half the length of 
+    the plot area in degrees latitude and longitude.  Scaling and final_unit can be used to tweak the data in order to 
+    make it more visible on the graph.  vmax and vmin function the same as in pcolormesh from Basemap.  
+    """
     
     if hinp != '':
         [data,parameterlist,datah,dataloc,units] = read_Hrrr(filename,[parameter])
@@ -63,3 +63,4 @@ more visible on the graph.  vmax and vmin function the same as in pcolormesh fro
         
     plt.colorbar(label=final_unit)
     plt.show()
+    return 0
