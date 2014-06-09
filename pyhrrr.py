@@ -7,8 +7,7 @@ Created on Mon Jun  9 11:46:41 2014
 
 import os
 
-dirpath = os.getcwd()
-dirpath = dirpath+'/HRRR'
+dirpath = os.path.abspath("HRRR")
 dirfiles = os.listdir(dirpath)
 
 
