@@ -53,5 +53,5 @@ def plothrrrfromfile(filename,parameter,hinp='',scaling=1,final_unit = '',vmax=N
     
     plt.colorbar(label=final_unit)
     plt.show()
-    return 0
+    return m
     
