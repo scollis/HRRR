@@ -60,7 +60,7 @@ def read_Hrrr_spec_loc(filename, parameters = [''],loc = [-97.485,36.605], max =
             data.append(newshape[xyindex[0]][xyindex[1]][:])
         else:
             newshape = grb_cube['data'].reshape([ysize,xsize,zsize])
-            data.append(newshape[xyindex[0]][xyindex[1]][:].max(axis=2))
+            data.append(newshape[xyindex[0]][xyindex[1]][:].max(axis=0))
         units.append(grb_cube['units'])
    
        
