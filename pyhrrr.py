@@ -14,10 +14,11 @@ import os
 
 wkdir = os.getcwd()
 
-directory = wkdir
+directory = wkdir[:]
 
 while "HRRR" in directory:
     os.chdir(os.path.abspath('..'))
+    directory = os.getcwd()
 
 dirpath = os.path.abspath("HRRR")
 
